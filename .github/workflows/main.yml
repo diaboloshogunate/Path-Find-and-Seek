@@ -13,19 +13,10 @@ jobs:
         with:
           lfs: true
           
-      - name: Install ReSharper CLT
-        uses: kasperhesthaven/setup-resharper-clt@v1.1.0
-        with:
-          resharper-version: "2020.3.3" # CLT Version to use, defaults to 2020.3.3
-
-      - name: Clean up code
-        run: cleanupcode.sh ../Path-Find-and-Seek.sln
-
-      - name: Find duplicate code
-        run: dupFinder.sh <source> -o=<PathToOutputFile>
-
-      - name: Analyze code
-        run: InspectCode.sh ../Path-Find-and-Seek.sln -o=<PathToOutputFile>
+      - name: Inspect
+      uses: nbadal/inspectcode-action
+      with:
+        solution: './Path-Find-and-Seek.sln'
 
       # Cache
       - uses: actions/cache@v2
