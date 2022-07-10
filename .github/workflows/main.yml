@@ -13,10 +13,19 @@ jobs:
         with:
           lfs: true
           
-      - name: resharper
-        uses: glassechidna/resharper-action@master
+      - name: Install ReSharper CLT
+        uses: kasperhesthaven/setup-resharper-clt@v1.1.0
         with:
-          solution: ${{env.GITHUB_WORKSPACE}}/Path-Find-and-Seek.sln
+          resharper-version: "2020.3.3" # CLT Version to use, defaults to 2020.3.3
+
+      - name: Clean up code
+        run: cleanupcode.sh YourSolution.sln
+
+      - name: Find duplicate code
+        run: dupFinder.sh <source> -o=<PathToOutputFile>
+
+      - name: Analyze code
+        run: InspectCode.sh YourSolution.sln -o=<PathToOutputFile>
 
       # Cache
       - uses: actions/cache@v2
