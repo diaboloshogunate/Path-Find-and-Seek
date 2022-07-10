@@ -16,7 +16,7 @@ jobs:
       - name: resharper
         uses: glassechidna/resharper-action@master
         with:
-        solution: HelloWorld.sln
+          solution: HelloWorld.sln
 
       # Cache
       - uses: actions/cache@v2
