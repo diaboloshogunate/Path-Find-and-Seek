@@ -16,7 +16,7 @@ jobs:
       - name: resharper
         uses: glassechidna/resharper-action@master
         with:
-          solution: ./Path-Find-and-Seek.sln
+          solution: ${{GITHUB_WORKSPACE}}/Path-Find-and-Seek.sln
 
       # Cache
       - uses: actions/cache@v2
