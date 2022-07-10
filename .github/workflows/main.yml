@@ -19,13 +19,13 @@ jobs:
           resharper-version: "2020.3.3" # CLT Version to use, defaults to 2020.3.3
 
       - name: Clean up code
-        run: cleanupcode.sh YourSolution.sln
+        run: cleanupcode.sh Path-Find-and-Seek.sln
 
       - name: Find duplicate code
         run: dupFinder.sh <source> -o=<PathToOutputFile>
 
       - name: Analyze code
-        run: InspectCode.sh YourSolution.sln -o=<PathToOutputFile>
+        run: InspectCode.sh Path-Find-and-Seek.sln -o=<PathToOutputFile>
 
       # Cache
       - uses: actions/cache@v2
