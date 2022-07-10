@@ -14,9 +14,9 @@ jobs:
           lfs: true
           
       - name: Inspect
-      uses: nbadal/inspectcode-action
-      with:
-        solution: './Path-Find-and-Seek.sln'
+        uses: nbadal/inspectcode-action
+        with:
+          solution: './Path-Find-and-Seek.sln'
 
       # Cache
       - uses: actions/cache@v2
