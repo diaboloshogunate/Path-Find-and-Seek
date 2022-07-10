@@ -9,27 +9,15 @@ jobs:
     steps:
       # Checkout
       - name: Checkout repository
-        uses: actions/checkout@v2
-        with:
-          lfs: true
+        uses: actions/checkout@v3
 
       # Cache
-      - uses: actions/cache@v2
+      - uses: actions/cache@v3
         with:
          path: Library
          key: Library-${{ hashFiles('Assets/**', 'Packages/**', 'ProjectSettings/**') }}
          restore-keys: |
           Library-
-
-      # Build
-      - name: Build project
-        uses: game-ci/unity-builder@v2
-        env:
-          UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
-          UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
-          UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
-        with:
-          targetPlatform: WebGL
 
       # Test
       - name: Run tests
@@ -41,11 +29,6 @@ jobs:
           coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;enableCyclomaticComplexity;assemblyFilters:+my.assembly.*'
 
       # Output
-      - uses: actions/upload-artifact@v2
-        with:
-          name: Build
-          path: build
-
       - uses: actions/upload-artifact@v2
         if: always()
         with:
