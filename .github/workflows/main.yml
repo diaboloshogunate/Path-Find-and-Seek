@@ -12,11 +12,6 @@ jobs:
         uses: actions/checkout@v2
         with:
           lfs: true
-          
-      - name: Run linters
-        uses: wearerequired/lint-action@v2
-        with:
-          dotnet_format: true
 
       # Cache
       - uses: actions/cache@v2
