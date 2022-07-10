@@ -13,10 +13,10 @@ jobs:
         with:
           lfs: true
           
-      - name: Inspect
-        uses: nbadal/inspectcode-action@v1
+      - name: Run linters
+        uses: wearerequired/lint-action@v2
         with:
-          solution: './Path-Find-and-Seek.sln'
+          dotnet_format: true
 
       # Cache
       - uses: actions/cache@v2
