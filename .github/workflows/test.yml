@@ -1,4 +1,4 @@
-name: Actions
+name: Unit Test
 
 on: [push, pull_request]
 
@@ -38,4 +38,4 @@ jobs:
         if: always()
         with:
           name: Coverage results
-          path: artifacts
+          path: artifacts          path: ${{ steps.test.outputs.artifactsPath }}
