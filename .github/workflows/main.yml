@@ -38,6 +38,7 @@ jobs:
           UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
         with:
           githubToken: ${{ secrets.GITHUB_TOKEN }}
+          coverageOptions: 'generateAdditionalMetrics;generateHtmlReport;generateBadgeReport;enableCyclomaticComplexity;assemblyFilters:+my.assembly.*'
 
       # Output
       - uses: actions/upload-artifact@v2
@@ -49,4 +50,10 @@ jobs:
         if: always()
         with:
           name: Test results
+          path: artifacts
+          
+      - uses: actions/upload-artifact@v2
+        if: always()
+        with:
+          name: Coverage results
           path: artifacts
