@@ -40,32 +40,25 @@ namespace Runtime
 
         private HashSet<int4> GetConnections(int2 from)
         {
-            switch (ConnectionStrategy)
+            HashSet<int4> hashSet = new HashSet<int4>();
+
+            if (ConnectionStrategy is ConnectionStraightness.FOUR or ConnectionStraightness.EIGHT)
             {
-                case ConnectionStraightness.FOUR:
-                    return new HashSet<int4>()
-                    {
-                        new int4(from.x, from.y, from.x - 1, from.y),
-                        new int4(from.x, from.y, from.x + 1, from.y),
-                        new int4(from.x, from.y, from.x, from.y - 1),
-                        new int4(from.x, from.y, from.x, from.y + 1),
-                    };
-                case ConnectionStraightness.EIGHT:
-                    return new HashSet<int4>()
-                    {
-                        new int4(from.x, from.y, from.x - 1, from.y),
-                        new int4(from.x, from.y, from.x + 1, from.y),
-                        new int4(from.x, from.y, from.x, from.y - 1),
-                        new int4(from.x, from.y, from.x, from.y + 1),
-                        
-                        new int4(from.x, from.y, from.x - 1, from.y - 1),
-                        new int4(from.x, from.y, from.x - 1, from.y + 1),
-                        new int4(from.x, from.y, from.x + 1, from.y - 1),
-                        new int4(from.x, from.y, from.x + 1, from.y + 1),
-                    };
+                hashSet.Add(new int4(from.x, from.y, from.x - 1, from.y));
+                hashSet.Add(new int4(from.x, from.y, from.x + 1, from.y));
+                hashSet.Add(new int4(from.x, from.y, from.x, from.y - 1));
+                hashSet.Add(new int4(from.x, from.y, from.x, from.y + 1));
             }
 
-            return null;
+            if (ConnectionStrategy == ConnectionStraightness.EIGHT)
+            {
+                hashSet.Add(new int4(from.x, from.y, from.x - 1, from.y - 1));
+                hashSet.Add(new int4(from.x, from.y, from.x - 1, from.y + 1));
+                hashSet.Add(new int4(from.x, from.y, from.x + 1, from.y - 1));
+                hashSet.Add(new int4(from.x, from.y, from.x + 1, from.y + 1));
+            }
+
+            return hashSet;
         }
     }
 }
