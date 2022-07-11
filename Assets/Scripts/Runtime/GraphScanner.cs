@@ -10,7 +10,7 @@ namespace Runtime
     // todo draw debug tools
     public class GraphScanner
     {
-        public enum ConnectionStraightness {FOUR, EIGHT}
+        public enum ConnectionStraightness { FOUR, EIGHT }
         public ConnectionStraightness ConnectionStrategy { get; set; }
         public int2 Cells { get; set; }
         public Vector2 CellSize { get; set; }
@@ -20,10 +20,11 @@ namespace Runtime
 
         public void Scan()
         {
-            Graph = new Graph() {
+            Graph = new Graph()
+            {
                 Size = Cells,
             };
-            
+
             for (int x = 0; x < Cells.x; x++)
             {
                 for (int y = 0; y < Cells.y; y++)
